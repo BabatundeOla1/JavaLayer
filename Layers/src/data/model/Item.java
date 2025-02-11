@@ -15,6 +15,21 @@ public class Item {
         Id = id;
     }
 
+    public int getWeightInGram() {
+        return weightInGram;
+    }
+
+    public void setWeightInGram(int weightInGram) {
+        this.weightInGram = weightInGram;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
     public int getId() {
         return Id;
     }
@@ -33,7 +48,7 @@ public class Item {
         return item;
     }
 
-    public void deletIteme(int id) {
+    public void deletItem(int id) {
         for (Item item : items) {
             if (item.getId() == id)
                 items.remove(id);
@@ -50,14 +65,24 @@ public class Item {
         return null;
     }
 
-    public Item update(Item sampleItem) {
-        for (Item item : items) {
-            if (items.size() > 0) {
-                Item sampleItems = items.get(0);
-            }
+    public Item updateItem(Item item) {
+        if(isNew(item)) {
+            item.setId(generateId());
+            items.add(item);
+            return item;
         }
-        return null;
+        Item existingItem = findItemById(item.getId());
+        existingItem.setWeightInGram(item.getWeightInGram());
+        existingItem.setDescription(item.getDescription());
+        return existingItem;
     }
 
+    private boolean isNew(Item item) {
+        return item.getId() == 0;
+    }
+
+    private int generateId(){
+        return ++count;
+    }
 
 }
