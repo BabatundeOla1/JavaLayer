@@ -65,6 +65,12 @@ public class Item {
         return null;
     }
 
+    public void deleteAllItem(int ... args) {
+        for (int id : args){
+            deletItem(id);
+        }
+    }
+
     public Item updateItem(Item item) {
         if(isNew(item)) {
             item.setId(generateId());
@@ -84,5 +90,4 @@ public class Item {
     private int generateId(){
         return ++count;
     }
-
 }

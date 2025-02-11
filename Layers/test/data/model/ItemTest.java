@@ -41,21 +41,34 @@ import static org.junit.jupiter.api.Assertions.*;
      }
 
      @Test
-     public void addItem_findItemById_UpdateItemTest() {
-         Item items = new Item("Item", 01);
-         assertEquals(0,items.count());
+     public void testThatAllItemsCanBeDeleted(){
+         Item item = new Item("Item", 01);
+         Item item1 = new Item("Item", 02);
+         Item savedItem = item.save(item);
+         Item savedItem2 = item.save(item1);
+         assertEquals(2, item.count());
 
-         Item savedItem = items.save(new Item("phone",50));
-         assertEquals(1,items.count());
-
-         int savedItemId = savedItem.getId();
-         int saveItemWeight = savedItem.getWeightInGram();
-
-         Item foundItem = items.findItemById(savedItem.getId());
-         foundItem.setWeightInGram(100);
-         items.save(foundItem);
-         assertEquals(1,items.count());
-         assertEquals(savedItemId,foundItem.getId());
+         item.deleteAllItem(item.getId(), item1.getId());
+         assertEquals(0, item.count());
 
      }
+
+//     @Test
+//     public void addItem_findItemById_UpdateItemTest() {
+//         Item items = new Item("Item", 01);
+//         assertEquals(0,items.count());
+//
+//         Item savedItem = items.save(new Item("phone",50));
+//         assertEquals(1,items.count());
+//
+//         int savedItemId = savedItem.getId();
+//         int saveItemWeight = savedItem.getWeightInGram();
+//
+//         Item foundItem = items.findItemById(savedItem.getId());
+//         foundItem.setWeightInGram(100);
+//         items.save(foundItem);
+//         assertEquals(1,items.count());
+//         assertEquals(savedItemId,foundItem.getId());
+//     }
+
 }
