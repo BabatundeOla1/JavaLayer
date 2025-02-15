@@ -1,11 +1,21 @@
 package data.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 public class TrackingInfo {
 
-    ArrayList<TrackingInfo> trackingInfos = new ArrayList<>();
-
+    private int itemId;
     private int id;
+    private String description;
+    private LocalDateTime localDateTime = LocalDateTime.now();
+
+    public int getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
+    }
 
     public int getId() {
         return id;
@@ -15,49 +25,19 @@ public class TrackingInfo {
         this.id = id;
     }
 
-    int count = 0;
-    public int count() {
-        return trackingInfos.size();
+    public String getDescription() {
+        return description;
     }
 
-    public void setCount(int count) {
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public TrackingInfo save(TrackingInfo trackingInfo) {
-        if(isNew(trackingInfo)) {
-            trackingInfo.setId(generateId());
-            trackingInfos.add(trackingInfo);
-        }
-        return trackingInfo;
-
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
     }
 
-    private boolean isNew(TrackingInfo trackingInfo) {
-        return trackingInfo.getId() == 0;
+    public void setLocalDateTime(LocalDateTime localDateTime) {
+        this.localDateTime = localDateTime;
     }
-
-    public TrackingInfo findtrackingInfoById(int id) {
-        for (TrackingInfo trackingInfo : trackingInfos) {
-            if (trackingInfo.getId() == id) {
-                return trackingInfo;
-            }
-        }
-        return null;
-
-    }
-
-    public boolean existById(int id) {
-        for (TrackingInfo trackingInfo : trackingInfos) {
-            if(trackingInfo.getId() == id) return true;
-        }
-        return false;
-    }
-
-    public void deleteById(int id) {
-        trackingInfos.removeIf(trackingInfo -> trackingInfo.getId() == id);
-    }
-    public int generateId(){
-        return count++;
-    }
-
 }
