@@ -95,23 +95,17 @@ public class ItemsTest {
     }
     @Test
     public void testThatItemCanBeUpdated(){
-//         Item savedItem = items.save(new Item());
-//         assertEquals(1,items.count());
-//
-//         int savedItemId = savedItem.getId();
-//         int saveItemWeight = savedItem.getWeightInGram();
-//
-//         Item updateItem = items.updateItem(savedItem);
-//        updateItem.setWeightInGram(100);
-//         items.save(updateItem);
-//         assertEquals(1,items.count());
-//         assertEquals(savedItemId,foundItem.getId());
+         Item savedItem = new Item();
+         items.save(savedItem);
+         setItemValues(savedItem);
+         assertEquals(1,items.count());
 
-        Item item = new Item();
-        items.save(item);
-        assertEquals(1,items.count());
+        Item itemToUpdate = items.updateItem(savedItem);
+        itemToUpdate.setWeightInGram(10);
+        itemToUpdate.setName("Pen");
+        itemToUpdate.setDescription("Red Pen");
 
+        assertEquals("Red Pen", savedItem.getDescription());
+        System.out.println(savedItem);
     }
-
-
 }

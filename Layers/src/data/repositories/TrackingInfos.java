@@ -46,11 +46,7 @@ public class TrackingInfos implements TrackingInfoRepo{
 
     @Override
     public void deleteById(int id) {
-        for (TrackingInfo trackingInfo : trackingInfos){
-            if (trackingInfo.getId() == id){
-                trackingInfos.remove(trackingInfo);
-            }
-        }
+        trackingInfos.removeIf(trackingInfo -> trackingInfo.getId() == id);
     }
 
     @Override
@@ -77,6 +73,8 @@ public class TrackingInfos implements TrackingInfoRepo{
 
     @Override
     public TrackingInfo updateTrackingInfo(TrackingInfo trackingInfo) {
-        return null;
+        TrackingInfo foundTrackingInfo = findTrackingInfoById(trackingInfo.getId());
+        foundTrackingInfo.setDescription(trackingInfo.getDescription());
+        return foundTrackingInfo;
     }
 }

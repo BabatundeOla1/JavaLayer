@@ -37,7 +37,12 @@ public class TrackingInfo {
         return localDateTime;
     }
 
-    public void setLocalDateTime(LocalDateTime localDateTime) {
-        this.localDateTime = localDateTime;
+    @Override
+    public String toString() {
+        return "Date And Time = " + getLocalDateTime() + " \n" +
+                " Item Id = " + getItemId() + " \n" +
+                " Description =  " + getDescription() + " \n" +
+                " Item Tracking Id = " + getId() +
+                " \n";
     }
 }

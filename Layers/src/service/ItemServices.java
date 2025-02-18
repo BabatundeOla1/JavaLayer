@@ -4,5 +4,5 @@ import data.model.Item;
 
 public interface ItemServices {
 
-    Item createItem(Item item);
+    Item createItem(String itemDescription, int itemWeight);
 }

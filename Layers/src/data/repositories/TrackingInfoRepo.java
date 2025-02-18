@@ -15,6 +15,4 @@ public interface TrackingInfoRepo {
     void deleteAllById(int ... ids);
     TrackingInfo updateTrackingInfo(TrackingInfo trackingInfo);
 
-
-
 }

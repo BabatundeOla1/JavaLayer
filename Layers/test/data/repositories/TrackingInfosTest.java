@@ -108,8 +108,24 @@ public class TrackingInfosTest {
 
         int firstTrackingInfoID = trackingInfo.getId();
         int secondTrackingInfoID = secondTrackingInfo.getId();
+        int thirdTrackingInfoID = thirdTrackingInfo.getId();
 
-        trackingInfos.deleteAllById(firstTrackingInfoID, secondTrackingInfoID);
+        trackingInfos.deleteAllById(firstTrackingInfoID, secondTrackingInfoID, thirdTrackingInfoID);
+        assertEquals(0, trackingInfos.count());
+    }
+
+    @Test
+    public void testThatYouCanUpdateTrackingInfoAfterItHasBeenSaved(){
+        TrackingInfos trackingInfos = new TrackingInfos();
+        assertEquals(0, trackingInfos.count());
+
+        TrackingInfo trackingInfo = new TrackingInfo();
+         trackingInfos.save(trackingInfo);
         assertEquals(1, trackingInfos.count());
+
+        TrackingInfo updatedTrackingInfo = trackingInfos.updateTrackingInfo(trackingInfo);
+        updatedTrackingInfo.setDescription("Green Book");
+
+        assertEquals(1, trackingInfo.getId());
     }
 }

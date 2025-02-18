@@ -39,4 +39,13 @@ public class Item {
     public void setId(int id) {
         Id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Name = " + getName() + " \n" +
+                " Weight = " + getWeightInGram() + " \n" +
+                " Description =  " + getDescription() + " \n" +
+                " Item Id = " + getId() +
+                " \n";
+    }
 }

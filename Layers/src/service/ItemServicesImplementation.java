@@ -5,12 +5,20 @@ import data.repositories.Items;
 import data.repositories.TrackingInfos;
 
 public class ItemServicesImplementation implements ItemServices{
+    private Items itemsRepository;
+    private TrackingInfos trackingInfos = new TrackingInfos();
+    TrackingInfoImplementation trackingInfoImplementation = new TrackingInfoImplementation(trackingInfos);
 
-    private Items itemRepository = new Items();
-    private TrackingInfos trackingInfoRepository = new TrackingInfos();
+    public ItemServicesImplementation(Items itemsRepository) {
+        this.itemsRepository = itemsRepository;
+    }
     @Override
-    public Item createItem(Item item) {
-        Item saveItem = itemRepository.save(item);
-        return null;
+    public Item createItem(String itemDescription, int itemWeight) {
+        Item newItem = new Item();
+        newItem.setDescription(itemDescription);
+        newItem.setWeightInGram(itemWeight);
+        Item savedItem = itemsRepository.save(newItem);
+        trackingInfoImplementation.createTrackingInfo(savedItem);
+        return savedItem;
     }
 }

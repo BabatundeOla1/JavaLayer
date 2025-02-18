@@ -34,8 +34,10 @@ public class Items implements ItemRepo{
 
     @Override
     public void deleteItemsById(int id) {
-        findItemById(id);
-        items.remove(id);
+//        findItemById(id);
+//        items.remove(id);
+
+        items.removeIf(item -> item.getId() == id);
     }
     @Override
     public Item findItemById(int id) {
@@ -60,7 +62,6 @@ public class Items implements ItemRepo{
         Item foundItem = findItem(item);
         foundItem.setWeightInGram(item.getWeightInGram());
         foundItem.setDescription(item.getDescription());
-        save(foundItem);
         return foundItem;
     }
 }
